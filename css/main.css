@@ -1,0 +1,62 @@
+body {
+  background-image: url(https://static.pexels.com/photos/235985/pexels-photo-235985.jpeg);
+}
+
+
+#calculator {
+  height: 510px;
+  width: 450px;
+  margin-top: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #d0dedf;
+  border: 2px solid #908b85;
+  border-radius: 8px;
+  box-shadow: 7px 10px 34px 1px rgba(0, 0, 0, 0.68), inset -1px -6px 12px 0.1px #89847e;
+}
+
+#screens {
+  text-align: right;
+  height: 75px;
+  border: 2px solid #b4b39d;
+  border-radius: 6px;
+  background-color: #c3c2ab;
+}
+
+.row {
+  margin: 20px;
+}
+
+button {
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  background-color: #564b81;
+  height: 40px;
+  box-shadow: 0px 3px 0px 0px #222121, inset -1px -3px 10px 1px #515151;
+  color: #fff;
+}
+
+/* animation of button put */
+button:active {
+  transform: translate(0px, 3px);
+  box-shadow: none;
+}
+
+/* override skeleton button hover and focus css */
+button:hover, button:focus {
+  color: #fff;
+}
+
+#echoScreen {
+  height: 10px;
+  bottom: 17px;
+  margin-right: 5px;
+  color: #8b8b7b;
+  font-size: 17px;
+}
+
+#mainScreen {
+  margin-right: 5px;
+  font-size: 39px;
+}
