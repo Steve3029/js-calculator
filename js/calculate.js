@@ -25,6 +25,7 @@ function updateScreenContent(contentTxt, elementId) {
 var operationListener = function(event) {
 
   calculator.activeValue = event.target.value;
+  var theLastChar = '';
   
   if (calculator.activeValue === 'ac') {
 
@@ -60,20 +61,31 @@ var operationListener = function(event) {
     updateScreenContent(calculator.currentNum, 'result');
     
   } else if (calculator.activeValue === '+' || calculator.activeValue === '-' || calculator.activeValue === '*' || calculator.activeValue === '/') {
-    calculator.echoText += calculator.activeValue;
-    updateScreenContent(calculator.echoText, 'echo');
 
-    if (calculator.operateor === '' || calculator.operateor === undefined) {
-      calculator.result = calculator.currentNum;
+    theLastChar = calculator.echoText.charAt(calculator.echoText.length - 1);
+    // prevent entry math operators continuely
+    if (theLastChar === '+' || theLastChar === '-' || theLastChar === '*' || theLastChar === '/') {
+      calculator.echoText = calculator.echoText.slice(0, calculator.echoText.length - 1) + calculator.activeValue;
       calculator.operateor = calculator.activeValue;
-      calculator.currentNum = '';
+      updateScreenContent(calculator.echoText, 'echo');
     } else {
-      calculator.result = eval(calculator.result + calculator.operateor + calculator.currentNum).toString();
-      calculator.operateor = calculator.activeValue;
-      updateScreenContent(calculator.result, 'result');
-      calculator.currentNum = '';
+      calculator.echoText += calculator.activeValue;
+      updateScreenContent(calculator.echoText, 'echo');
+
+      if (calculator.operateor === '' || calculator.operateor === undefined) {
+        calculator.result = calculator.currentNum;
+        calculator.operateor = calculator.activeValue;
+        calculator.currentNum = '';
+      } else {
+        calculator.result = eval(calculator.result + calculator.operateor + calculator.currentNum).toString();
+        calculator.operateor = calculator.activeValue;
+        updateScreenContent(calculator.result, 'result');
+        calculator.currentNum = '';
+      }
     }
+    
   } else if (calculator.activeValue === '=') {
+
     calculator.echoText += calculator.activeValue;
     calculator.result = eval(calculator.result + calculator.operateor + calculator.currentNum).toString();
     updateScreenContent(calculator.echoText + calculator.result, 'echo');
