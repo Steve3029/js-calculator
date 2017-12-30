@@ -28,7 +28,7 @@ var operationListener = function(event) {
   var theLastChar = '';
   
   if (calculator.activeValue === 'ac') {
-
+    // reset calculator
     calculator.echoText = '';
     calculator.result = '0';
     calculator.activeValue = '';
