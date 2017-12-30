@@ -29,7 +29,7 @@ var operationListener = function(event) {
   if (calculator.activeValue === 'ac') {
 
     calculator.echoText = '';
-    calculator.result = '';
+    calculator.result = '0';
     calculator.activeValue = '';
     calculator.currentNum = '';
     updateScreenContent(calculator.echoText, 'echo');
