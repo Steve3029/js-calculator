@@ -39,6 +39,14 @@ function clearErrNum() {
   updateScreenContent(calculator.currentNum, 'result');
 }
 
+// clear a digit each time
+function clearOneDigit() {
+  calculator.echoText = calculator.echoText.slice(0, calculator.echoText.length - 1);
+  calculator.currentNum = calculator.currentNum.slice(0, calculator.currentNum.length - 1);
+  updateScreenContent(calculator.echoText, 'echo');
+  updateScreenContent(calculator.currentNum, 'result');
+}
+
 //listen and response button press
 var operationListener = function(event) {
 
@@ -54,10 +62,8 @@ var operationListener = function(event) {
     clearErrNum();
 
   } else if (calculator.activeValue === 'bkn' && calculator.currentNum !== '') {
-    calculator.echoText = calculator.echoText.slice(0, calculator.echoText.length - 1);
-    calculator.currentNum = calculator.currentNum.slice(0, calculator.currentNum.length - 1);
-    updateScreenContent(calculator.echoText, 'echo');
-    updateScreenContent(calculator.currentNum, 'result');
+    // clear a digit each press
+    clearOneDigit();
 
   } else if (!isNaN(calculator.activeValue) || calculator.activeValue === ".") {
 
