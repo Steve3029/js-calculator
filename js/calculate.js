@@ -40,9 +40,21 @@ function clearErrNum() {
 }
 
 // clear a digit each time
-function clearOneDigit() {
+function clearLastDigit() {
   calculator.echoText = calculator.echoText.slice(0, calculator.echoText.length - 1);
   calculator.currentNum = calculator.currentNum.slice(0, calculator.currentNum.length - 1);
+  updateScreenContent(calculator.echoText, 'echo');
+  updateScreenContent(calculator.currentNum, 'result');
+}
+
+// handle number and dot input
+function numberInputHandler() {
+  if (calculator.currentNum === '' && calculator.activeValue === ".") {
+    calculator.activeValue = '0.';
+  }
+  calculator.echoText += calculator.activeValue;
+  calculator.currentNum += calculator.activeValue;
+  
   updateScreenContent(calculator.echoText, 'echo');
   updateScreenContent(calculator.currentNum, 'result');
 }
@@ -63,18 +75,11 @@ var operationListener = function(event) {
 
   } else if (calculator.activeValue === 'bkn' && calculator.currentNum !== '') {
     // clear a digit each press
-    clearOneDigit();
+    clearLastDigit();
 
   } else if (!isNaN(calculator.activeValue) || calculator.activeValue === ".") {
-
-    if (calculator.currentNum === '' && calculator.activeValue === ".") {
-      calculator.activeValue = '0.';
-    }
-    calculator.echoText += calculator.activeValue;
-    calculator.currentNum += calculator.activeValue;
-    
-    updateScreenContent(calculator.echoText, 'echo');
-    updateScreenContent(calculator.currentNum, 'result');
+    // handle number and dot input
+    numberInputHandler();
     
   } else if (calculator.activeValue === '+' || calculator.activeValue === '-' || calculator.activeValue === '*' || calculator.activeValue === '/') {
 
