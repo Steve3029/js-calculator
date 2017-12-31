@@ -28,6 +28,13 @@ function resetCalculator() {
   updateScreenContent(calculator.activeValue, 'result');
 }
 
+function clearErrNum() {
+  calculator.echoText = calculator.echoText.slice(0, calculator.echoText.length - calculator.currentNum.length);
+  calculator.currentNum = '';
+  updateScreenContent(calculator.echoText, 'echo');
+  updateScreenContent(calculator.currentNum, 'result');
+}
+
 //listen and response button press
 var operationListener = function(event) {
 
@@ -39,11 +46,8 @@ var operationListener = function(event) {
     resetCalculator();
 
   } else if (calculator.activeValue === 'ce') {
-    
-    calculator.echoText = calculator.echoText.slice(0, calculator.echoText.length - calculator.currentNum.length);
-    calculator.currentNum = '';
-    updateScreenContent(calculator.echoText, 'echo');
-    updateScreenContent(calculator.currentNum, 'result');
+    // clear error number
+    clearErrNum();
 
   } else if (calculator.activeValue === 'bkn' && calculator.currentNum !== '') {
     calculator.echoText = calculator.echoText.slice(0, calculator.echoText.length - 1);
