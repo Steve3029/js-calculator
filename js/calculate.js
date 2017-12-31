@@ -19,7 +19,14 @@ function updateScreenContent(contentTxt, elementId) {
   document.getElementById(elementId).innerHTML = contentTxt;
 };
 
-
+function resetCalculator() {
+  calculator.echoText = '';
+  calculator.result = '0';
+  calculator.activeValue = '';
+  calculator.currentNum = '';
+  updateScreenContent(calculator.echoText, 'echo');
+  updateScreenContent(calculator.activeValue, 'result');
+}
 
 //listen and response button press
 var operationListener = function(event) {
@@ -29,12 +36,7 @@ var operationListener = function(event) {
   
   if (calculator.activeValue === 'ac') {
     // reset calculator
-    calculator.echoText = '';
-    calculator.result = '0';
-    calculator.activeValue = '';
-    calculator.currentNum = '';
-    updateScreenContent(calculator.echoText, 'echo');
-    updateScreenContent(calculator.activeValue, 'result');
+    resetCalculator();
 
   } else if (calculator.activeValue === 'ce') {
     
