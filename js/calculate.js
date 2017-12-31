@@ -1,4 +1,5 @@
 
+// adding click event listener to every button 
 window.addEventListener('load', function() {
   var buttons = document.getElementsByTagName('button');
   for ( var i = 0; i < buttons.length; i++) {
@@ -6,6 +7,7 @@ window.addEventListener('load', function() {
   }
 });
 
+// this object used to keep the state of the calculator
 var calculator = {
   currentNum: '',
   echoText: '',
@@ -14,11 +16,12 @@ var calculator = {
   activeValue: ''
 };
 
-
+// update number that is displayed on the screen
 function updateScreenContent(contentTxt, elementId) {
   document.getElementById(elementId).innerHTML = contentTxt;
 };
 
+// reset calculator
 function resetCalculator() {
   calculator.echoText = '';
   calculator.result = '0';
@@ -28,6 +31,7 @@ function resetCalculator() {
   updateScreenContent(calculator.activeValue, 'result');
 }
 
+// clear error number
 function clearErrNum() {
   calculator.echoText = calculator.echoText.slice(0, calculator.echoText.length - calculator.currentNum.length);
   calculator.currentNum = '';
